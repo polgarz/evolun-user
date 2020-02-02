@@ -1,0 +1,34 @@
+{
+    "name": "polgarz/evolun-user",
+    "description": "User extension for Evolun",
+    "keywords": ["evolun", "user", "volunteering system", "volunteering", "volunteer"],
+    "type": "evolun-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/polgarz/evolun-user/issues",
+        "source": "https://github.com/polgarz/evolun-user"
+    },
+    "authors": [
+        {
+            "name": "Polgar Zoltan",
+            "email": "pzoltan@pzoltan.hu",
+            "homepage": "http://www.evolun.hu/"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2-imagine": "^2.2",
+        "mohorev/yii2-upload-behavior": "*",
+        "kartik-v/yii2-widget-datepicker": "@dev"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "evolun\\user\\": ""
+        }
+    }
+}
