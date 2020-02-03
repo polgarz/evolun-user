@@ -25,13 +25,13 @@ class Module extends \evolun\user\modules\UserSubModule
      * Az esemenyek modelje
      * @var string
      */
-    public $eventModelClass = 'app\modules\event\models\Event';
+    public $eventModelClass = 'evolun\event\models\Event';
 
     /**
      * Az esemenyek asset bundleje (kell az ikonokhoz)
      * @var string
      */
-    public $eventAssetBundle = 'app\modules\event\assets\EventAsset';
+    public $eventAssetBundle = 'evolun\event\assets\EventAsset';
 
     public function init()
     {
