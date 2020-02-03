@@ -9,7 +9,7 @@ use yii\bootstrap\Tabs;
 /* @var $model evolun\user\models\User */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Önkéntesek', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Volunteers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['pageHeader'] = ['title' => '&nbsp;'];
 ?>
@@ -18,7 +18,7 @@ $this->params['pageHeader'] = ['title' => '&nbsp;'];
          <!-- Profile Image -->
         <div class="box box-default">
             <div class="box-body box-profile">
-                <a href="<?= $model->image ? $model->getUploadUrl('image') : '#' ?>" <?= $model->image ? 'target="_blank"' : '' ?>><img class="profile-user-img img-responsive img-circle" src="<?= $model->getThumbUploadUrl('image', 's') ?>" alt="Profilkép"></a>
+                <a href="<?= $model->image ? $model->getUploadUrl('image') : '#' ?>" <?= $model->image ? 'target="_blank"' : '' ?>><img class="profile-user-img img-responsive img-circle" src="<?= $model->getThumbUploadUrl('image', 's') ?>" alt="<?= Yii::t('user', 'Profile image') ?>"></a>
                 <h3 class="profile-username text-center"><?= $model->name ?></h3>
 
                 <p class="text-muted text-center">
@@ -58,17 +58,17 @@ $this->params['pageHeader'] = ['title' => '&nbsp;'];
                     <?php endif ?>
                     <?php if ($model->driving_license !== null): ?>
                         <li class="list-group-item">
-                            <b><?= $model->getAttributeLabel('driving_license') ?></b> <span class="pull-right"><?= $model->driving_license ? 'Van' : 'Nincs' ?></span>
+                            <b><?= $model->getAttributeLabel('driving_license') ?></b> <span class="pull-right"><?= $model->driving_license ? Yii::t('user', 'Yes') : Yii::t('user', 'No') ?></span>
                         </li>
                     <?php endif ?>
                 </ul>
                 <?php if (Yii::$app->user->can('manageUsers')): ?>
                     <div class="row">
                         <div class="col-xs-6">
-                            <?= Html::a('<i class="fa fa-pencil"></i> Módosítás', ['update', 'id' => $model->id], ['class' => 'btn btn-primary btn-block']) ?>
+                            <?= Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('user', 'Update'), ['/user/default/update', 'id' => $model->id], ['class' => 'btn btn-primary btn-block']) ?>
                         </div>
                         <div class="col-xs-6">
-                            <?= Html::a('<i class="fa fa-trash"></i> Törlés', ['delete', 'id' => $model->id], ['class' => 'btn btn-danger btn-block', 'data-confirm' => 'Biztosan törlöd ezt az önkéntest? Minden hozzá tartozó adat törlődni fog!']) ?>
+                            <?= Html::a('<i class="fa fa-trash"></i> ' . Yii::t('user', 'Delete'), ['/user/default/delete', 'id' => $model->id], ['class' => 'btn btn-danger btn-block', 'data-confirm' => Yii::t('user', 'Are you sure? Every data belongs this user will be deleted!')]) ?>
                         </div>
                     </div>
                 <?php endif ?>

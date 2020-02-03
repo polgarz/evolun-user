@@ -1,10 +1,12 @@
 <?php
 use yii\helpers\Url;
+
+Yii::$app->getModule($userModuleId);
 ?>
 <div class="col-md-4">
     <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title">Legújabb önkénteseink</h3>
+            <h3 class="box-title"><?= Yii::t('user/widget', 'Recent volunteers') ?></h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">

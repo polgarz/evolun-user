@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model evolun\user\models\User */
 
-$this->title = 'Önkéntes adatainak módosítása: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Önkéntesek', 'url' => ['index']];
+$this->title = Yii::t('user', 'Update volunteer: {name}', ['name' => $model->name]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Volunteers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Módosítás';
+$this->params['breadcrumbs'][] = Yii::t('user', 'Update');
 $this->params['pageHeader'] = ['title' => $this->title];
 ?>
 

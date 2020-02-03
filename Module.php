@@ -2,6 +2,8 @@
 
 namespace evolun\user;
 
+use Yii;
+
 /**
  * Felhasználó modul
  *
@@ -69,13 +71,13 @@ class Module extends \yii\base\Module
      * A regisztrációs email
      * @var string
      */
-    public $registerEmail = '@app/modules/user/mail/register';
+    public $registerEmail = '@vendor/polgarz/evolun-user/mail/{language}/register';
 
     /**
      * Az email, amivel a jelszót lehet visszaállítani
      * @var string
      */
-    public $resetPasswordRequestEmail = '@app/modules/user/mail/reset-password-request';
+    public $resetPasswordRequestEmail = '@vendor/polgarz/evolun-user/mail/{language}/reset-password-request';
 
     /**
      * Az alap template fajlok
@@ -98,10 +100,33 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
+        $this->registerTranslations();
+
+        $this->registerEmail = strtr($this->registerEmail, ['{language}' => Yii::$app->language]);
+        $this->resetPasswordRequestEmail = strtr($this->resetPasswordRequestEmail, ['{language}' => Yii::$app->language]);
+
         if (!empty($this->userTemplates)) {
             $this->userTemplates = array_merge($this->defaultUserTemplates, $this->userTemplates);
         } else {
             $this->userTemplates = $this->defaultUserTemplates;
+        }
+    }
+
+    public function registerTranslations()
+    {
+        if (!isset(Yii::$app->get('i18n')->translations['user'])) {
+            Yii::$app->get('i18n')->translations['user*'] = [
+                'class' => \yii\i18n\PhpMessageSource::className(),
+                'basePath' => __DIR__ . '/messages',
+                'sourceLanguage' => 'en-US',
+                'fileMap' => [
+                    'user' => 'user.php',
+                    'user/event' => 'event.php',
+                    'user/rbac' => 'rbac.php',
+                    'user/widget' => 'widget.php',
+                    'user/profile' => 'profile.php',
+                ]
+            ];
         }
     }
 }

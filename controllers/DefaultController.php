@@ -83,7 +83,7 @@ class DefaultController extends Controller
     public function actionView($id)
     {
         if (Yii::$app->user->id != $id && !Yii::$app->user->can('showUsers')) {
-            throw new ForbiddenHttpException('Nincs jogosultsága a művelet végrehajtásához.');
+            throw new ForbiddenHttpException();
         }
 
         $model = $this->findModel($id);
@@ -139,11 +139,11 @@ class DefaultController extends Controller
                     }
                 }
 
-                Yii::$app->session->setFlash('success', 'Az önkéntes sikeresen hozzáadva');
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Create successful'));
 
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-                Yii::$app->session->setFlash('danger', 'Az önkéntes hozzáadása nem sikerült');
+                Yii::$app->session->setFlash('danger', Yii::t('user', 'Create failed'));
             }
         }
 
@@ -175,10 +175,10 @@ class DefaultController extends Controller
                     }
                 }
 
-                Yii::$app->session->setFlash('success', 'Az önkéntes adatai sikeresen módosultak');
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Update successful'));
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
-                Yii::$app->session->setFlash('danger', 'Az önkéntes adatai nem módosultak');
+                Yii::$app->session->setFlash('danger', Yii::t('user', 'Update failed'));
             }
         }
 
@@ -197,9 +197,9 @@ class DefaultController extends Controller
     public function actionDelete($id)
     {
         if ($this->findModel($id)->delete()) {
-            Yii::$app->session->setFlash('success', 'Sikeres törlés');
+            Yii::$app->session->setFlash('success', Yii::t('user', 'Delete successful'));
         } else {
-            Yii::$app->session->setFlash('danger', 'A törlés nem sikerült');
+            Yii::$app->session->setFlash('danger', Yii::t('user', 'Delete failed'));
         }
 
         return $this->redirect(['index']);
@@ -243,7 +243,7 @@ class DefaultController extends Controller
         $model = Yii::createObject($this->module->resetPasswordRequestFormModel);
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Levelet küldtünk a megadott email címre, kérlek, kövesd az abban leírtakat!');
+                Yii::$app->session->setFlash('success', Yii::t('user', 'We sent you an email, please follow the instructions in it'));
 
                 return $this->goHome();
             }
@@ -276,7 +276,7 @@ class DefaultController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'Az új jelszó beállítva!');
+            Yii::$app->session->setFlash('success', Yii::t('user', 'New password is saved!'));
 
             return $this->goHome();
         }
@@ -311,6 +311,6 @@ class DefaultController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('Nincs ilyen felhasználó.');
+        throw new NotFoundHttpException();
     }
 }

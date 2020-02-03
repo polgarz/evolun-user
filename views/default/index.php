@@ -7,7 +7,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Önkéntesek';
+$this->title = Yii::t('user', 'Volunteers');
 $this->params['pageHeader'] = ['title' => $this->title];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         return strtr($layout, [
                             '{image}' => $model->getThumbUploadUrl('image', 's'),
-                            '{name}' => $model->inactive ? Html::tag('strong', '<i class="fa fa-clock-o" title="Inaktív"></i> ' . $model->name . ' (' . $model->nickname . ')', ['class' => 'text-muted']) : Html::tag('strong', $model->name . ' (' . $model->nickname . ')'),
+                            '{name}' => $model->inactive ? Html::tag('strong', '<i class="fa fa-clock-o" title="' . Yii::t('user', 'inactive') . '"></i> ' . $model->name . ' (' . $model->nickname . ')', ['class' => 'text-muted']) : Html::tag('strong', $model->name . ' (' . $model->nickname . ')'),
                             '{summary}' => $userRoles[$model->id] ?? '',
                             '{url}' => Url::to(['view', 'id' => $model->id]),
                         ]);

@@ -16,6 +16,11 @@ class ProfileDropdown extends \yii\base\Widget implements UserWidgetInterface
     public $user = false;
 
     /**
+     * @var string
+     */
+    public $userModuleId = 'user';
+
+    /**
      * {@inheritdoc}
      */
     public function init()
@@ -37,6 +42,7 @@ class ProfileDropdown extends \yii\base\Widget implements UserWidgetInterface
     {
         return $this->render('profile-dropdown', [
             'user' => $this->user,
+            'userModuleId' => $this->userModuleId,
             ]);
     }
 }

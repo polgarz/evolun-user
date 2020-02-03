@@ -19,4 +19,15 @@ class Module extends \evolun\user\modules\UserSubModule
      * @var string
      */
     public $userModelClass = 'evolun\user\models\User';
+
+    public $title;
+
+    public function init()
+    {
+        parent::init();
+
+        if (!$this->title) {
+            $this->title = Yii::t('user', 'Settings');
+        }
+    }
 }

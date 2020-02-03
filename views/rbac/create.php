@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Workgroup */
 
-$this->title = 'Jogosultsági kör létrehozása';
-$this->params['breadcrumbs'][] = ['label' => 'Jogosultsági körök', 'url' => ['index']];
+$this->title = Yii::t('user/rbac', 'Create role');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user/rbac', 'Roles'), 'url' => ['index']];
 $this->params['pageHeader'] = ['title' => $this->title];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

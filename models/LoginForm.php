@@ -52,9 +52,9 @@ class LoginForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => 'Email cím',
-            'password' => 'Jelszó',
-            'rememberMe' => 'Jegyezz meg',
+            'email' => Yii::t('user', 'Email address'),
+            'password' => Yii::t('user', 'Password'),
+            'rememberMe' => Yii::t('user', 'Remember me'),
         ];
     }
 
@@ -70,7 +70,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Hibás email cím, vagy jelszó!');
+                $this->addError($attribute, Yii::t('user', 'Invalid email / password'));
             }
         }
     }

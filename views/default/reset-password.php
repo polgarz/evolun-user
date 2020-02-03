@@ -6,11 +6,11 @@ use yii\bootstrap\ActiveForm;
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="/"><b>Önkéntes</b> felület</a>
+        <a href="/"><?= Yii::$app->name ?></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Add meg az új jelszavadat</p>
+        <p class="login-box-msg"><?= Yii::t('user', 'Set a new password below') ?></p>
 
         <?php $form = ActiveForm::begin(); ?>
 
@@ -19,8 +19,8 @@ use yii\bootstrap\ActiveForm;
             <?= $form->field($model, 'passwordRepeat')->passwordInput() ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Új jelszó mentése', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                <?= Html::a('Mégse', [Yii::$app->homeUrl], ['class' => 'btn btn-default']) ?>
+                <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::a(Yii::t('user', 'Cancel'), [Yii::$app->homeUrl], ['class' => 'btn btn-default']) ?>
             </div>
 
         <?php ActiveForm::end(); ?>

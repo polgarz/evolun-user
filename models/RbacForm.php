@@ -66,7 +66,7 @@ class RbacForm extends Model
     {
         return [
             [['name', 'description'], 'required'],
-            [['name'], 'match', 'pattern' => '/^[a-zA-Z]+$/', 'message' => 'Hibás formátum! Csak az angol ABC betűi használhatók, egybeírva'],
+            [['name'], 'match', 'pattern' => '/^[a-zA-Z]+$/', 'message' => Yii::t('user/rbac', 'Invalid format! You have to use alphabet letters only, without space')],
             [['name'], 'uniqueName', 'when' => function($model) {
                 return $model->_item === null;
             }],
@@ -85,7 +85,7 @@ class RbacForm extends Model
     public function uniqueName($attribute, $params)
     {
         if ($this->getManager()->getRole($this->$attribute) !== null) {
-            $this->addError($attribute, 'Már szerepel jogkör ilyen néven.');
+            $this->addError($attribute, Yii::t('user/rbac', 'There is already a role with this name, please choose another one'));
         }
     }
 
@@ -145,11 +145,11 @@ class RbacForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => 'Név',
-            'type' => 'Típus',
-            'description' => 'Leírás',
-            'permissions' => 'Jogosultságok',
-            'parent' => 'Szülő jogkör'
+            'name' => Yii::t('user/rbac', 'Name'),
+            'type' => Yii::t('user/rbac', 'Type'),
+            'description' => Yii::t('user/rbac', 'Description'),
+            'permissions' => Yii::t('user/rbac', 'Permissions'),
+            'parent' => Yii::t('user/rbac', 'Parent role'),
         ];
     }
 

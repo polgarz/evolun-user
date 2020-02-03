@@ -7,6 +7,7 @@ use yii\web\IdentityInterface;
 use yii\helpers\FileHelper;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use evolun\user\Module;
 
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -121,30 +122,28 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Teljes név',
-            'nickname' => 'Becenév',
-            'email' => 'Email cím',
-            'password' => 'Jelszó',
-            'passwordRepeat' => 'Jelszó (újra)',
-            'phone' => 'Telefonszám',
-            'member_since' => 'Csatlakozás ideje',
-            'skype' => 'Skype',
-            'facebook' => 'Facebook adatlap',
-            'address' => 'Lakcím',
-            'driving_license' => 'Jogositvány',
-            'birth_date' => 'Születési dátum',
-            'auth_key' => 'Auth Key',
-            'created_at' => 'Létrehozva',
-            'updated_at' => 'Utoljára módosítva',
-            'created_by' => 'Létrehozta',
-            'updated_by' => 'Utoljára módosította',
-            'last_activity' => 'Utoljára aktív',
-            'createdByName' => 'Létrehozta',
-            'updatedByName' => 'Utoljára módosította',
-            'role' => 'Jogosultsági szint',
-            'sendEmailAfterCreate' => 'Email küldése felvétel után',
-            'image' => 'Profilkép',
+            'name' => Yii::t('user', 'Full name'),
+            'nickname' => Yii::t('user', 'Nickname'),
+            'email' => Yii::t('user', 'Email address'),
+            'password' => Yii::t('user', 'Password'),
+            'passwordRepeat' => Yii::t('user', 'Password (repeat)'),
+            'phone' => Yii::t('user', 'Phone number'),
+            'member_since' => Yii::t('user', 'Join date'),
+            'skype' => Yii::t('user', 'Skype'),
+            'facebook' => Yii::t('user', 'Facebook'),
+            'address' => Yii::t('user', 'Address'),
+            'driving_license' => Yii::t('user', 'Driving license'),
+            'birth_date' => Yii::t('user', 'Birth date'),
+            'created_at' => Yii::t('user', 'Created at'),
+            'updated_at' => Yii::t('user', 'Updated at'),
+            'created_by' => Yii::t('user', 'Created by'),
+            'updated_by' => Yii::t('user', 'Updated by'),
+            'last_activity' => Yii::t('user', 'Last activity'),
+            'createdByName' => Yii::t('user', 'Created by'),
+            'updatedByName' => Yii::t('user', 'Updated by'),
+            'role' => Yii::t('user', 'Role'),
+            'sendEmailAfterCreate' => Yii::t('user', 'Send email after create'),
+            'image' => Yii::t('user', 'Profile image'),
         ];
     }
 
@@ -188,7 +187,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             Yii::$app->mailer->compose(Yii::$app->controller->module->registerEmail, ['user' => $this])
                 ->setFrom(Yii::$app->params['mainEmail'])
                 ->setTo($this->email)
-                ->setSubject('Üdv az önkénteseink között!')
+                ->setSubject(Yii::t('user', 'Welcome!'))
                 ->send();
         }
     }
@@ -310,22 +309,34 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $relative = [];
 
         if ($diff->y > 0) {
-            $relative[] = $diff->y . ' éve';
+            if ($diff->y === 1) {
+                $relative[] = $diff->y . ' ' . Yii::t('user', 'year');
+            } else {
+                $relative[] = $diff->y . ' ' . Yii::t('user', 'years');
+            }
         }
 
         if ($diff->m > 0) {
-            $relative[] = $diff->m . ' hónapja';
+            if ($diff->m === 1) {
+                $relative[] = $diff->m . ' ' . Yii::t('user', 'month');
+            } else {
+                $relative[] = $diff->m . ' ' . Yii::t('user', 'months');
+            }
         }
 
         if ($diff->d > 0) {
-            $relative[] = $diff->d . ' napja';
+            if ($diff->d === 1) {
+                $relative[] = $diff->d . ' ' . Yii::t('user', 'day');
+            } else {
+                $relative[] = $diff->d . ' ' . Yii::t('user', 'days');
+            }
         }
 
         if (count($relative) > 1 && !$round) {
             if (count($relative) == 2) {
-                return $relative[0] . ' és ' . $relative[1];
+                return $relative[0] . ' ' . Yii::t('user', 'and') . ' ' . $relative[1];
             } else {
-                return $relative[0] . ' ' . $relative[1] . ', és ' . $relative[2];
+                return $relative[0] . ' ' . $relative[1] . ', ' . Yii::t('user', 'and') . ' ' . $relative[2];
             }
         } else if (count($relative)) {
             return $relative[0];

@@ -10,7 +10,7 @@ $bundle = Yii::$app->controller->module->eventAssetBundle::register($this);
     'dataProvider' => $dataProvider,
     'options' => ['tag' => 'div', 'class' => 'list-group list-group-unbordered'],
     'itemOptions' => ['tag' => false],
-    'emptyText' => '<p><span class="text-muted">Nincsenek események</span></p>',
+    'emptyText' => '<p><span class="text-muted">' . Yii::t('user/event', 'There are no events') . '</span></p>',
     'itemView' => function($model) use (&$bundle) {
         $layout = '
             <a href="{url}" class="list-group-item">
@@ -23,7 +23,7 @@ $bundle = Yii::$app->controller->module->eventAssetBundle::register($this);
                     <div class="media-body">
                         <strong>{title}</strong>
                         <div class="text-muted">
-                            {participates} résztvevő &bullet; {start}
+                            {participates} &bullet; {start}
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ $bundle = Yii::$app->controller->module->eventAssetBundle::register($this);
             '{color}' => $model->categoryDetails['color'] ?? '#ccc',
             '{category}' => $model->categoryDetails['title'] ?? null,
             '{icon}' => isset($model->categoryDetails['icon']) ? Html::img($bundle->baseUrl . '/dist/svg/categories/' . $model->categoryDetails['icon'], ['width' => '35']) : null,
-            '{participates}' => count($model->participates),
+            '{participates}' => Yii::t('user/event', '{participates} participates', ['participates' => count($model->participates)]),
         ]);
     },
     'summary' => '',

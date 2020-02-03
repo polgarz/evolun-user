@@ -12,15 +12,15 @@ class m191004_200457_rbac_init extends Migration
         $auth = Yii::$app->authManager;
 
         $showUsers = $auth->createPermission('showUsers');
-        $showUsers->description = 'Megtekintheti az önkéntesek adatait';
+        $showUsers->description = 'Show volunteers data';
         $auth->add($showUsers);
 
         $manageUsers = $auth->createPermission('manageUsers');
-        $manageUsers->description = 'Hozzáadhat, törölhet, módosíthat önkénteseket';
+        $manageUsers->description = 'Add, edit, or delete volunteers';
         $auth->add($manageUsers);
 
         $managePermissions = $auth->createPermission('managePermissions');
-        $managePermissions->description = 'Módosíthatja a jogosultsági szinteket';
+        $managePermissions->description = 'Manage permissions';
         $auth->add($managePermissions);
 
         $admin = $auth->createRole('admin');

@@ -23,7 +23,7 @@ class ResetPasswordRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => Yii::$app->controller->module->userModel,
                 'targetAttribute' => ['email' => 'email'],
-                'message' => 'Nincs ilyen email cím a rendszerben'
+                'message' => Yii::t('user', 'Email address not found')
             ],
         ];
     }
@@ -31,7 +31,7 @@ class ResetPasswordRequestForm extends Model
     public function attributeLabels()
     {
         return [
-            'email' => 'Email cím',
+            'email' => Yii::t('user', 'Email address'),
         ];
     }
 
@@ -55,7 +55,7 @@ class ResetPasswordRequestForm extends Model
         return Yii::$app->mailer->compose(Yii::$app->controller->module->resetPasswordRequestEmail, ['user' => $user])
                 ->setFrom(Yii::$app->params['mainEmail'])
                 ->setTo($this->email)
-                ->setSubject('Elfelejtett jelszó')
+                ->setSubject(Yii::t('user', 'Password reset request'))
                 ->send();
     }
 }

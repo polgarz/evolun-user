@@ -23,7 +23,7 @@ $this->registerJs('
     <div class="box box-default">
 
         <div class="box-header">
-            <h3 class="box-title">Alapadatok</h3>
+            <h3 class="box-title"><?= Yii::t('user', 'Basic info') ?></h3>
         </div>
 
         <div class="box-body">
@@ -57,7 +57,7 @@ $this->registerJs('
     <div class="box box-default">
 
         <div class="box-header">
-            <h3 class="box-title">Bejelentkezési adatok</h3>
+            <h3 class="box-title"><?= Yii::t('user', 'Login data') ?></h3>
         </div>
 
         <div class="box-body">
@@ -70,7 +70,7 @@ $this->registerJs('
                     <div class="input-group">
                         {input}
                         <span class="input-group-btn">
-                            <button class="btn btn-default btn-generate" type="button">Generálás</button>
+                            <button class="btn btn-default btn-generate" type="button">' . Yii::t('user', 'Generate') . '</button>
                         </span>
                     </div>{hint}'
                 ])->passwordInput(['maxlength' => true, 'autocomplete' => 'new-password']) ?>
@@ -85,10 +85,10 @@ $this->registerJs('
     <div class="box box-default">
 
         <div class="box-header">
-            <h3 class="box-title">Elérhetőségek</h3>
+            <h3 class="box-title"><?= Yii::t('user', 'Contact info') ?></h3>
         </div>
         <div class="box-body">
-            <?= $form->field($model, 'phone')->textInput()->hint('Formátum: +36301234567') ?>
+            <?= $form->field($model, 'phone')->textInput()->hint(Yii::t('user', 'Format: +36301234567')) ?>
 
             <?= $form->field($model, 'skype')->textInput(['maxlength' => true]) ?>
 
@@ -104,7 +104,7 @@ $this->registerJs('
     <?php endif ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>

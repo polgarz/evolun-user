@@ -29,12 +29,12 @@ class ResetPasswordForm extends Model
     public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
-            throw new InvalidParamException('Üres token!');
+            throw new InvalidParamException(Yii::t('user', 'Empty token!'));
         }
         $userModel = Yii::createObject(Yii::$app->controller->module->userModel);
         $this->_user = $userModel::findIdentityByAccessToken($token);
         if (!$this->_user) {
-            throw new InvalidParamException('Hibás token!');
+            throw new InvalidParamException(Yii::t('user', 'Invalid token!'));
         }
         parent::__construct($config);
     }
@@ -47,15 +47,15 @@ class ResetPasswordForm extends Model
         return [
             [['password', 'passwordRepeat'], 'required'],
             ['password', 'string', 'min' => 6],
-            ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => 'A két jelszónak egyeznie kell!'],
+            ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('user', 'Two passwords must be the same')],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'password' => 'Új jelszó',
-            'passwordRepeat' => 'Új jelszó (újra)'
+            'password' => Yii::t('user', 'New password'),
+            'passwordRepeat' => Yii::t('user', 'New password (repeat)'),
         ];
     }
 

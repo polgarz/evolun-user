@@ -66,9 +66,9 @@ class DefaultController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Sikeres mentés');
+                Yii::$app->session->setFlash('success', Yii::t('user/profile', 'Profile saved'));
             } else {
-                Yii::$app->session->setFlash('danger', 'Sikertelen mentés');
+                Yii::$app->session->setFlash('danger', Yii::t('user/profile', 'Saving the profile failed'));
             }
         }
 
@@ -102,9 +102,9 @@ class DefaultController extends Controller
         $model->password = null;
         $model->image = null;
         if ($model->save()) {
-            Yii::$app->session->setFlash('success', 'A profilkép sikeresen törölve');
+            Yii::$app->session->setFlash('success', Yii::t('user/profile', 'Profile image deleted'));
         } else {
-            Yii::$app->session->setFlash('danger', 'A profilkép törlése sikertelen volt');
+            Yii::$app->session->setFlash('danger', Yii::t('user/profile', 'Profile image delete failed'));
         }
 
         return $this->redirect(['view', 'id' => Yii::$app->user->id]);

@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model evolun\user\models\User */
 
-$this->title = 'Új önkéntes';
+$this->title = Yii::t('user', 'New volunteer');
 $this->params['pageHeader'] = ['title' => $this->title];
-$this->params['breadcrumbs'][] = ['label' => 'Önkéntesek', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Volunteers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

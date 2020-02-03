@@ -1,5 +1,7 @@
 <?php
 use yii\helpers\Url;
+
+Yii::$app->getModule($userModuleId);
 ?>
 <!-- User Account Menu -->
 <li class="dropdown user user-menu">
@@ -18,7 +20,7 @@ use yii\helpers\Url;
             <p>
                 <?= $user->name ?>
                 <?php if ($user->relativeMemberSince): ?>
-                    <small><?= $user->relativeMemberSince ?> vagy önkéntes</small>
+                    <small><?= Yii::t('user/widget', 'You are a volunteer since {date}', ['date' => $user->relativeMemberSince]) ?></small>
                 <?php endif ?>
             </p>
         </li>
@@ -32,10 +34,10 @@ use yii\helpers\Url;
         <!-- Menu Footer-->
         <li class="user-footer">
             <div class="pull-left">
-                <a href="<?= Url::to(['/user/default/view', 'id' => $user->id]) ?>" class="btn btn-default btn-flat">Profil</a>
+                <a href="<?= Url::to(['/user/default/view', 'id' => $user->id]) ?>" class="btn btn-default btn-flat"><?= Yii::t('user/widget', 'Profile') ?></a>
             </div>
             <div class="pull-right">
-                <a href="<?= Url::to(['/user/default/logout']) ?>" class="btn btn-default btn-flat">Kijelentkezés</a>
+                <a href="<?= Url::to(['/user/default/logout']) ?>" class="btn btn-default btn-flat"><?= Yii::t('user/widget', 'Log out') ?></a>
             </div>
         </li>
     </ul>

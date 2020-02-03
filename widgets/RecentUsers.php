@@ -10,6 +10,11 @@ use evolun\user\models\User;
 class RecentUsers extends \yii\base\Widget
 {
     /**
+     * @var string
+     */
+    public $userModuleId = 'user';
+
+    /**
      * {@inheritdoc}
      */
     public function run()
@@ -26,6 +31,7 @@ class RecentUsers extends \yii\base\Widget
 
         return $this->render('recent-users', [
             'users' => $users,
+            'userModuleId' => $this->userModuleId,
             ]);
     }
 }

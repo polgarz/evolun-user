@@ -9,6 +9,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use lajax\languagepicker\widgets\LanguagePicker;
 
 AppAsset::register($this);
 ?>
@@ -24,11 +25,29 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body class="hold-transition login-page">
-<?php $this->beginBody() ?>
-<?= Alert::widget() ?>
-<?= $content ?>
+    <?php $this->beginBody() ?>
+        <div class="wrapper">
+            <header class="main-header">
+                <!-- Header Navbar -->
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Navbar Right Menu -->
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <?= LanguagePicker::widget([
+                                'itemTemplate' => '<li><a href="{link}" title="{language}"><i class="{language}"></i> {name}</a></li>',
+                                'activeItemTemplate' => '<a href="#" class="dropdown-toggle" title="{language}" data-toggle="dropdown" role="button" aria-expanded="false">{name}</a>',
+                                'parentTemplate' => '<li class="dropdown">{activeItem}<ul class="dropdown-menu" role="menu">{items}</ul></li>',
+                                'encodeLabels' => false,
+                            ]) ?>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
 
-<?php $this->endBody() ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -66,10 +66,10 @@ class RbacController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'A jogosultsági kör létrehozva');
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Create successful'));
                 return $this->redirect(['index']);
             } else {
-                Yii::$app->session->setFlash('danger', 'A jogosultsági kör létrehozása sikertelen volt.');
+                Yii::$app->session->setFlash('danger', Yii::t('user', 'Create failed'));
             }
         }
 
@@ -91,17 +91,17 @@ class RbacController extends Controller
         $role = $manager->getRole($id);
 
         if (!$role) {
-            throw NotFoundHttpException('Nincs ilyen jogosultsági kör!');
+            throw NotFoundHttpException();
         }
 
         $model = new RbacForm($role);
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'A jogosultsági kör sikeresen módosítva');
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Update successful'));
                 return $this->redirect(['index']);
             } else {
-                Yii::$app->session->setFlash('danger', 'A jogosultsági kör módosítása sikertelen volt.');
+                Yii::$app->session->setFlash('danger', Yii::t('user', 'Create failed'));
             }
         }
 
@@ -123,7 +123,7 @@ class RbacController extends Controller
         $model = $manager->getRole($id);
 
         if (!$model) {
-            throw NotFoundHttpException('Nincs ilyen jogosultsági kör!');
+            throw NotFoundHttpException();
         }
 
         $manager->remove($model);
