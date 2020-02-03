@@ -12,14 +12,15 @@
         {
             "name": "Polgar Zoltan",
             "email": "pzoltan@pzoltan.hu",
-            "homepage": "http://www.evolun.hu/"
+            "homepage": "https://www.evolun.hu/"
         }
     ],
     "require": {
         "yiisoft/yii2-imagine": "^2.2",
         "mohorev/yii2-upload-behavior": "*",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "lajax/yii2-language-picker": "1.*"
+        "lajax/yii2-language-picker": "1.*",
+        "yiisoft/yii2-bootstrap": "~2.0.0"
     },
     "repositories": [
         {
