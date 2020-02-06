@@ -39,7 +39,7 @@ class UserSubModule extends \yii\base\Module
         if ($user = User::findOne(Yii::$app->request->get('id'))) {
             $this->setUser($user);
         } else {
-            throw new NotFoundHttpException();
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         parent::init();

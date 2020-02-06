@@ -91,7 +91,7 @@ class RbacController extends Controller
         $role = $manager->getRole($id);
 
         if (!$role) {
-            throw NotFoundHttpException();
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $model = new RbacForm($role);
@@ -123,7 +123,7 @@ class RbacController extends Controller
         $model = $manager->getRole($id);
 
         if (!$model) {
-            throw NotFoundHttpException();
+            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
         }
 
         $manager->remove($model);

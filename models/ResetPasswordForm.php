@@ -29,7 +29,7 @@ class ResetPasswordForm extends Model
     public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
-            throw new InvalidParamException(Yii::t('user', 'Empty token!'));
+            throw new InvalidParamException(Yii::t('user', 'Missing token!'));
         }
         $userModel = Yii::createObject(Yii::$app->controller->module->userModel);
         $this->_user = $userModel::findIdentityByAccessToken($token);

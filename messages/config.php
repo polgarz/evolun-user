@@ -53,12 +53,11 @@ return [
     'phpDocBlock' => null,
     */
 
-    /*
     // Message categories to ignore
     'ignoreCategories' => [
         'yii',
     ],
-     */
+
 
     /*
     // 'db' output format is for saving messages to database.

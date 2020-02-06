@@ -311,6 +311,6 @@ class DefaultController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException();
+        throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
     }
 }
