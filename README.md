@@ -9,13 +9,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist polgarz/evolun-user "*"
+php composer.phar require --prefer-dist polgarz/evolun-user "@dev"
 ```
 
 or add
 
 ```
-"polgarz/evolun-user": "*"
+"polgarz/evolun-user": "@dev"
 ```
 
 to the require section of your `composer.json` file.
