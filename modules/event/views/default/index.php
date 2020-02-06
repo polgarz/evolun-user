@@ -38,8 +38,8 @@ $bundle = Yii::$app->controller->module->eventAssetBundle::register($this);
             '{url}' => Url::to(['/event/default/view', 'id' => $model->id]),
             '{color}' => $model->categoryDetails['color'] ?? '#ccc',
             '{category}' => $model->categoryDetails['title'] ?? null,
-            '{icon}' => isset($model->categoryDetails['icon']) ? Html::img($bundle->baseUrl . '/dist/svg/categories/' . $model->categoryDetails['icon'], ['width' => '35']) : null,
-            '{participates}' => Yii::t('user/event', '{participates} participates', ['participates' => count($model->participates)]),
+            '{icon}' => isset($model->categoryDetails['icon']) ? Html::img($bundle->baseUrl . '/svg/categories/' . $model->categoryDetails['icon'], ['width' => '35']) : null,
+            '{participates}' => Yii::t('user/event', '{participates} going', ['participates' => count($model->participates)]),
         ]);
     },
     'summary' => '',

@@ -121,10 +121,6 @@ class Module extends \yii\base\Module
                 'sourceLanguage' => 'en-US',
                 'fileMap' => [
                     'user' => 'user.php',
-                    'user/event' => 'event.php',
-                    'user/rbac' => 'rbac.php',
-                    'user/widget' => 'widget.php',
-                    'user/profile' => 'profile.php',
                 ]
             ];
         }

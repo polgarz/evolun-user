@@ -36,11 +36,15 @@ class Module extends \evolun\user\modules\UserSubModule
     public function init()
     {
         if (!class_exists($this->eventModelClass)) {
-            throw new InvalidConfigException('Az eseményekhez tartozó model nem található!');
+            throw new InvalidConfigException(Yii::t('user', 'Event model class not found!'));
         }
 
         if (!class_exists($this->eventAssetBundle)) {
-            throw new InvalidConfigException('Az eseményekhez tartozó asset bundle nem található!');
+            throw new InvalidConfigException(Yii::t('user', 'Event asset bundle class not found!'));
+        }
+
+        if (!$this->title) {
+            $this->title = Yii::t('user', 'Events');
         }
 
         parent::init();
