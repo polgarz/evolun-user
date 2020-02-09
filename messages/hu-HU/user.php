@@ -86,4 +86,8 @@ return [
     'Facebook' => '',
     'Missing token!' => 'Hiányzó token!',
     'Skype' => '',
+    'Groups' => 'Csoportok',
+    'All groups' => 'Minden csoport',
+    'Other' => 'Egyéb',
+    'There are no groups' => 'Még nem csatlakozott csoprothoz',
 ];
