@@ -33,6 +33,11 @@ class Module extends \evolun\user\modules\UserSubModule
      */
     public $eventAssetBundle = 'evolun\event\assets\EventAsset';
 
+    /**
+     * @var string
+     */
+    public $eventModuleId = 'event';
+
     public function init()
     {
         if (!class_exists($this->eventModelClass)) {
@@ -41,6 +46,10 @@ class Module extends \evolun\user\modules\UserSubModule
 
         if (!class_exists($this->eventAssetBundle)) {
             throw new InvalidConfigException(Yii::t('user', 'Event asset bundle class not found!'));
+        }
+
+        if (Yii::$app->hasModule($this->eventModuleId)) {
+            Yii::$app->getModule($this->eventModuleId);
         }
 
         if (!$this->title) {

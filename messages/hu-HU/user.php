@@ -90,4 +90,5 @@ return [
     'All groups' => 'Minden csoport',
     'Other' => 'Egyéb',
     'There are no groups' => 'Még nem csatlakozott csoprothoz',
+    'Events' => 'Események',
 ];
