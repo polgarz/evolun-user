@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m191004_200457_rbac_init
+ * Class m190101_200457_rbac_init
  */
-class m191004_200457_rbac_init extends Migration
+class m190101_200457_rbac_init extends Migration
 {
     public function up()
     {

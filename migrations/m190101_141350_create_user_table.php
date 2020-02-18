@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m191003_141350_create_user_table
+ * Class m190101_141350_create_user_table
  */
-class m191003_141350_create_user_table extends Migration
+class m190101_141350_create_user_table extends Migration
 {
     /**
      * @inheritdoc
