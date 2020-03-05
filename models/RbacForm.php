@@ -53,7 +53,7 @@ class RbacForm extends Model
             $this->name = $this->_item->name;
             $this->description = $this->_item->description;
             $this->permissions = array_keys($this->getManager()->getChildren($this->name));
-            $this->parent = (new \yii\db\Query)->select('parent')->from($this->getManager()->itemChildTable)->where(['child' => $this->name])->scalar();
+            $this->parent = $this->getParentName($this->_item);
         }
 
         parent::__construct($config);
@@ -66,7 +66,6 @@ class RbacForm extends Model
     {
         return [
             [['name', 'description'], 'required'],
-            [['name'], 'match', 'pattern' => '/^[a-zA-Z]+$/', 'message' => Yii::t('user/rbac', 'Invalid format! You have to use alphabet letters only, without space')],
             [['name'], 'uniqueName', 'when' => function($model) {
                 return $model->_item === null;
             }],
@@ -90,53 +89,59 @@ class RbacForm extends Model
     }
 
     /**
-     * Beszúrja, vagy módosítja az itemet
-     * @return boolean sikeres volt-e a mentés?
+     * Saves an item
+     * @return boolean
      */
     public function save()
     {
-        if ($this->validate()) {
-            // ha új jogkörről van szó
-            if ($this->_item === null) {
-                $this->_item = $this->getManager()->createRole($this->name);
-                $this->_item->name = $this->name;
-                $isNew = true;
-            } else {
-                $isNew = false;
-            }
+        if (!$this->validate()) {
+            return false;
+        }
 
-            // a leírást mindenképp szerkesztjük
-            $this->_item->description = $this->description;
+        $isNewRecord = $this->_item === null;
 
-            // töröljük a már létező permissiönöket
+        $item = $this->getManager()->createRole($this->name);
+        $item->description = $this->description;
+
+        // remove current permissions, and parent (if it isn't new)
+        if (!$isNewRecord) {
             $permissions = $this->getManager()->getPermissionsByRole($this->_item->name);
             foreach($permissions as $permission) {
                 $this->getManager()->removeChild($this->_item, $permission);
             }
 
-            if ($isNew) {
-                $this->getManager()->add($this->_item);
-
-                // szülőt csak hozzáadásnál lehet megadni
-                if ($this->parent) {
-                    $this->getManager()->addChild($this->getManager()->getRole($this->parent), $this->_item);
-                }
-            } else {
-                $this->getManager()->update($this->name, $this->_item);
+            if ($parent = $this->getParentName($this->_item)) {
+                $this->getManager()->removeChild($this->getManager()->getRole($parent), $this->_item);
             }
-
-            // ha kaptunk permissionoket, hozzáadjuk az itemhez
-            if (!empty($this->permissions)) {
-                foreach($this->permissions as $permission) {
-                    $permission = $this->getManager()->getPermission($permission);
-                    $this->getManager()->addChild($this->_item, $permission);
-                }
-            }
-
-            return true;
-        } else {
-            return false;
         }
+
+        if ($isNewRecord) {
+            $this->getManager()->add($item);
+        } else {
+            $this->getManager()->update($this->_item->name, $item);
+        }
+
+        if (!empty($this->parent)) {
+            $this->getManager()->addChild($this->getManager()->getRole($this->parent), $item);
+        }
+
+        if (!empty($this->permissions)) {
+            foreach($this->permissions as $permission) {
+                $permission = $this->getManager()->getPermission($permission);
+                $this->getManager()->addChild($item, $permission);
+            }
+        }
+
+        return true;
+    }
+
+    private function getParentName($item)
+    {
+        return (new \yii\db\Query)
+            ->select('parent')
+            ->from($this->getManager()->itemChildTable)
+            ->where(['child' => $item->name])
+            ->scalar();
     }
 
     /**

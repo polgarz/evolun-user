@@ -14,9 +14,9 @@ use yii\helpers\ArrayHelper;
     <div class="box-body">
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'name')->textInput(['disabled' => !$insert]) ?>
+        <?= $form->field($model, 'name')->textInput() ?>
 
-        <?= $form->field($model, 'parent')->dropdownList(ArrayHelper::map(Yii::$app->authmanager->getChildRoles(Yii::$app->user->identity->role), 'name', 'description'), ['prompt' => '-', 'disabled' => !$insert]) ?>
+        <?= $form->field($model, 'parent')->dropdownList(ArrayHelper::map(Yii::$app->authmanager->getChildRoles(Yii::$app->user->identity->role), 'name', 'name'), ['prompt' => '-']) ?>
 
         <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 

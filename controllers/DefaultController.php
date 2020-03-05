@@ -56,7 +56,7 @@ class DefaultController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         // jogosultsagok (az authmanagerbol nem lehet lekerdezni, csak minden userhez kulon kulon)
         $userRoles = (new \yii\db\Query())
-            ->select('description, user_id')
+            ->select('name, user_id')
             ->from(Yii::$app->authManager->assignmentTable)
             ->leftJoin(Yii::$app->authManager->itemTable, 'name = item_name')
             ->indexBy('user_id')

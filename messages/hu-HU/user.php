@@ -58,7 +58,7 @@ return [
     'Profile image' => 'Profilkép',
     'Remember me' => 'Emlékezz rám',
     'Reset password' => 'Új jelszó beállítása',
-    'Role' => 'Szerepkör',
+    'Role' => 'Jogosultsági kör',
     'Save' => 'Mentés',
     'Search by email, name, and others' => 'Keress email cím, név, vagy egyéb adatok alapján',
     'Send email after create' => 'Email küldése felvétel után',

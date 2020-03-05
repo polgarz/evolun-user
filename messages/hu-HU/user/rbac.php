@@ -4,7 +4,6 @@ return [
     'Are you sure? Users with this permission may cannot access to some pages' => 'Biztos vagy benne? A felhasználók ezzel a jogosultsággal lehet, hogy nem fognak hozzáférni egyes oldalakhoz!',
     'Create role' => 'Új jogosultsági kör',
     'Description' => 'Leírás',
-    'Invalid format! You have to use alphabet letters only, without space' => 'Hibás formátum! Csak az angol ABC betűit használhatod, ékezetek nélkül',
     'Name' => 'Név',
     'Parent role' => 'Szülő jogosultsági kör',
     'Permissions' => 'Jogosultságok',
