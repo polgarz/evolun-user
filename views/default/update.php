@@ -14,4 +14,4 @@ $this->params['pageHeader'] = ['title' => $this->title];
 
 <?= $this->render(Yii::$app->controller->module->userTemplates['form'], [
     'model' => $model,
-]) ?>
+]);

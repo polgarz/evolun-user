@@ -83,7 +83,7 @@ class Module extends \yii\base\Module
      * Az alap template fajlok
      * @var array
      */
-    private $defaultUserTemplates = [
+    private $_defaultUserTemplates = [
         'index' => 'index',
         'view' => 'view',
         'tools' => '_tools',
@@ -106,9 +106,9 @@ class Module extends \yii\base\Module
         $this->resetPasswordRequestEmail = strtr($this->resetPasswordRequestEmail, ['{language}' => Yii::$app->language]);
 
         if (!empty($this->userTemplates)) {
-            $this->userTemplates = array_merge($this->defaultUserTemplates, $this->userTemplates);
+            $this->userTemplates = array_merge($this->_defaultUserTemplates, $this->userTemplates);
         } else {
-            $this->userTemplates = $this->defaultUserTemplates;
+            $this->userTemplates = $this->_defaultUserTemplates;
         }
     }
 

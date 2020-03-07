@@ -90,7 +90,7 @@ class DefaultController extends Controller
         $modules = [];
 
         if ($this->module->modules) {
-            foreach($this->module->modules as $id => $module) {
+            foreach ($this->module->modules as $id => $module) {
                 $module = $this->module->getModule($id);
 
                 if (!$module instanceof UserSubModule) {
@@ -99,7 +99,7 @@ class DefaultController extends Controller
 
                 try {
                     $content = $module->runAction($module->defaultRoute, Yii::$app->request->get());
-                } catch(\yii\web\ForbiddenHttpException $e) {
+                } catch (\yii\web\ForbiddenHttpException $e) {
                     Yii::info($id . ' submodule: ' . $e->getMessage(), 'user');
                     continue;
                 }

@@ -62,7 +62,7 @@ class DefaultController extends Controller
         ]);
 
         if ($count = count($dataProvider->models)) {
-            $this->module->title = $this->module->title . ' ('. $count .')';
+            $this->module->title = $this->module->title . ' (' . $count . ')';
         }
 
         return $this->renderPartial('index', [

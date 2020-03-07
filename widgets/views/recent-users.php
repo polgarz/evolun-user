@@ -11,7 +11,7 @@ Yii::$app->getModule($userModuleId);
         <!-- /.box-header -->
         <div class="box-body no-padding">
             <ul class="users-list clearfix">
-                <?php foreach($users as $user): ?>
+                <?php foreach ($users as $user): ?>
                     <li>
                         <img src="<?= $user->getThumbUploadUrl('image', 's') ?>" class="img-circle" alt="Profilkép">
                         <a class="users-list-name" href="<?= Url::to(['/user/default/view', 'id' => $user->id]) ?>"><?= $user->nickname ?></a>

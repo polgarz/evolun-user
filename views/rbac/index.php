@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'name',
                     'format' => 'raw',
-                    'value' => function($model) {
+                    'value' => function ($model) {
                         return Html::a($model->name, ['update', 'id' => $model->name], ['class' => 'col-link text-default']);
                     },
                 ],
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'contentOptions' => ['style' => 'width: 65px', 'class' => 'text-right'],
                     'template' => '{delete}',
                     'buttons' => [
-                        'delete' => function($url, $model) {
+                        'delete' => function ($url, $model) {
                             return Html::a('<i class="fa fa-trash"></i>', $url, ['class' => 'btn btn-default btn-xs', 'data-method' => 'post', 'data-confirm' => Yii::t('user/rbac', 'Are you sure? Users with this permission may cannot access to some pages')]);
                         },
                     ],

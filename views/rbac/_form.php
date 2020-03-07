@@ -20,7 +20,9 @@ use yii\helpers\ArrayHelper;
 
         <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'permissions')->checkboxList(ArrayHelper::map($permissions, 'name', function($item) { return $item->description . ' (' . $item->name . ')'; }), ['separator' => '<br />']) ?>
+        <?= $form->field($model, 'permissions')->checkboxList(ArrayHelper::map($permissions, 'name', function ($item) {
+    return $item->description . ' (' . $item->name . ')';
+        }), ['separator' => '<br />']) ?>
 
         <div class="form-group">
             <?= Html::submitButton('Mentés', ['class' => 'btn btn-success']) ?>

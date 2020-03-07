@@ -66,7 +66,7 @@ class RbacForm extends Model
     {
         return [
             [['name', 'description'], 'required'],
-            [['name'], 'uniqueName', 'when' => function($model) {
+            [['name'], 'uniqueName', 'when' => function ($model) {
                 return $model->_item === null;
             }],
             [['description'], 'string'],
@@ -106,7 +106,7 @@ class RbacForm extends Model
         // remove current permissions, and parent (if it isn't new)
         if (!$isNewRecord) {
             $permissions = $this->getManager()->getPermissionsByRole($this->_item->name);
-            foreach($permissions as $permission) {
+            foreach ($permissions as $permission) {
                 $this->getManager()->removeChild($this->_item, $permission);
             }
 
@@ -126,7 +126,7 @@ class RbacForm extends Model
         }
 
         if (!empty($this->permissions)) {
-            foreach($this->permissions as $permission) {
+            foreach ($this->permissions as $permission) {
                 $permission = $this->getManager()->getPermission($permission);
                 $this->getManager()->addChild($item, $permission);
             }

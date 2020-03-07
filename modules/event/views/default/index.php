@@ -11,7 +11,7 @@ $bundle = Yii::$app->controller->module->eventAssetBundle::register($this);
     'options' => ['tag' => 'div', 'class' => 'list-group list-group-unbordered'],
     'itemOptions' => ['tag' => false],
     'emptyText' => '<p><span class="text-muted">' . Yii::t('user/event', 'There are no events') . '</span></p>',
-    'itemView' => function($model) use (&$bundle) {
+    'itemView' => function ($model) use (&$bundle) {
         $layout = '
             <a href="{url}" class="list-group-item">
                 <div class="media">
@@ -43,4 +43,4 @@ $bundle = Yii::$app->controller->module->eventAssetBundle::register($this);
         ]);
     },
     'summary' => '',
-]) ?>
+]);

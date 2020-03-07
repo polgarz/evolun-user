@@ -44,7 +44,7 @@ class DefaultController extends Controller
                         'actions' => ['index', 'delete-own-profile', 'delete-own-profile-image'],
                         'allow'   => true,
                         'roles'   => ['@'],
-                        'matchCallback' => function() {
+                        'matchCallback' => function () {
                             return $this->getUser()->id == Yii::$app->user->id;
                         },
                     ],

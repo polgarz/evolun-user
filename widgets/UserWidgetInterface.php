@@ -1,6 +1,7 @@
 <?php
 namespace evolun\user\widgets;
 
-interface UserWidgetInterface {
+interface UserWidgetInterface
+{
     public function getUser();
 }

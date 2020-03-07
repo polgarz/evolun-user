@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'attribute' => 'name',
                     'format' => 'raw',
-                    'value' => function($model) use (&$userRoles) {
+                    'value' => function ($model) use (&$userRoles) {
                         $layout = '
                             <a href="{url}" class="text-default">
                                 <div class="media">
@@ -61,12 +61,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'contentOptions' => ['style' => 'width: 85px; vertical-align: middle; text-align: right'],
                     'template' => '{phone} {email}',
                     'buttons' => [
-                        'phone' => function($url, $model) {
+                        'phone' => function ($url, $model) {
                             if (!empty($model->phone)) {
                                 return Html::a('<i class="fa fa-phone"></i>', 'tel:' . $model->phone, ['class' => 'btn btn-default btn-sm', 'target' => '_blank']);
                             }
                         },
-                        'email' => function($url, $model) {
+                        'email' => function ($url, $model) {
                             if (!empty($model->email)) {
                                 return Html::a('<i class="fa fa-envelope"></i>', 'mailto:' . $model->email, ['class' => 'btn btn-default btn-sm', 'target' => '_blank']);
                             }

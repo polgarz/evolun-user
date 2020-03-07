@@ -27,7 +27,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * Jogosultsági szint
      * @var string
      */
-    private $role;
+    private $_role;
 
     /**
      * Letrehozasi scenario
@@ -99,7 +99,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['role'], 'required', 'on' => [self::SCENARIO_CREATE, self::SCENARIO_UPDATE]],
             [['email'], 'unique'],
             ['password', 'string', 'min' => 6],
-            [['passwordRepeat'], 'required', 'when' => function($model) {
+            [['passwordRepeat'], 'required', 'when' => function ($model) {
                 return !empty($model->password);
             }, 'whenClient' => "function (attribute, value) {
                 return $('#user-password').val().length > 0;
@@ -338,7 +338,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             } else {
                 return $relative[0] . ' ' . $relative[1] . ', ' . Yii::t('user', 'and') . ' ' . $relative[2];
             }
-        } else if (count($relative)) {
+        } elseif (count($relative)) {
             return $relative[0];
         }
     }
@@ -349,7 +349,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getRole()
     {
-        if (!isset($this->role)) {
+        if (!isset($this->_role)) {
             if (!$this->isNewRecord) {
                 $auth = \Yii::$app->authManager;
                 $roles = $auth->getRolesByUser($this->id);
@@ -360,7 +360,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             }
         }
 
-        return $this->role;
+        return $this->_role;
     }
 
     /**
@@ -369,6 +369,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setRole($role)
     {
-        $this->role = $role;
+        $this->_role = $role;
     }
 }

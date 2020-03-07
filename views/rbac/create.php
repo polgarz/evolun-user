@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Workgroup */
 
@@ -16,4 +15,4 @@ $this->params['breadcrumbs'][] = $this->title;
     'model'        => $model,
     'permissions'  => $permissions,
     'insert'       => true,
-]) ?>
+]);
