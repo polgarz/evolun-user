@@ -33,7 +33,7 @@ class RbacController extends Controller
                     [
                         'actions' => ['create', 'update', 'delete', 'index'],
                         'allow' => true,
-                        'roles' => ['managePermissions']
+                        'roles' => ['manageAdminData']
                     ],
                 ]
             ],
