@@ -22,6 +22,8 @@ class DefaultController extends Controller
      */
     public function init() : void
     {
+        parent::init();
+
         $this->setUser($this->module->getUser());
     }
 
